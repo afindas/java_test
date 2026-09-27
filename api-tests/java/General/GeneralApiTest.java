@@ -15,7 +15,7 @@ class GeneralApiTest {
         RestAssured.baseURI = "{{BASE_URL}}";
     }
 
-    @Test @Disabled("FR-058 BE-05: CLAP generation failed -- CLAP call failed: ERR-003-PROVIDER_ERROR: Claude client error: 400 BAD_REQUEST — {'type':'error','error':{'type':'invalid_request_error','message':'You have reached your specified API usage limits. You will regain access on 2026-10-01 at 00:00 UTC.'},'request_id':'req_011CfTRkHAJhHZrqu5keyysh'}") void unknown_route_returns_404() {
+    @Test @Disabled("FR-058 BE-05: CLAP generation failed -- CLAP call failed: ERR-003-PROVIDER_ERROR: Claude client error: 400 BAD_REQUEST — {'type':'error','error':{'type':'invalid_request_error','message':'You have reached your specified API usage limits. You will regain access on 2026-10-01 at 00:00 UTC.'},'request_id':'req_011CfTqMaAQXaL7yEpdLwD1P'}") void unknown_route_returns_404() {
         // generation failed for this TC, see @Disabled reason
     }
 
