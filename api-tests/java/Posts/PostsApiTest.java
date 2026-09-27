@@ -9,35 +9,41 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
 /** FR-058 BE-05 -- CLAP-generated for module: Posts */
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class PostsApiTest {
 
     @BeforeAll static void setup() {
         RestAssured.baseURI = "{{BASE_URL}}";
     }
 
-    @Order(1)
-    @Test @Disabled("FR-058 BE-05: CLAP generation failed -- CLAP call failed: ERR-003-PROVIDER_ERROR: Claude client error: 400 BAD_REQUEST — {'type':'error','error':{'type':'invalid_request_error','message':'You have reached your specified API usage limits. You will regain access on 2026-10-01 at 00:00 UTC.'},'request_id':'req_011CfS22szDAPB5QM89w51Yz'}") void get_all_posts() {
+    @Test @Disabled("FR-058 BE-05: CLAP generation failed -- CLAP call failed: ERR-003-PROVIDER_ERROR: Claude client error: 400 BAD_REQUEST — {'type':'error','error':{'type':'invalid_request_error','message':'You have reached your specified API usage limits. You will regain access on 2026-10-01 at 00:00 UTC.'},'request_id':'req_011CfTLxvwfcMtxNTtDDB9mc'}") void get_single_post_by_id() {
         // generation failed for this TC, see @Disabled reason
     }
 
-    @Order(2)
-    @Test @Disabled("FR-058 BE-05: CLAP generation failed -- CLAP call failed: ERR-003-PROVIDER_ERROR: Claude client error: 400 BAD_REQUEST — {'type':'error','error':{'type':'invalid_request_error','message':'You have reached your specified API usage limits. You will regain access on 2026-10-01 at 00:00 UTC.'},'request_id':'req_011CfS23D8tdgrNdCjoDpNL2'}") void get_post_by_id() {
+    @Test @Disabled("FR-058 BE-05: CLAP generation failed -- CLAP call failed: ERR-003-PROVIDER_ERROR: Claude client error: 400 BAD_REQUEST — {'type':'error','error':{'type':'invalid_request_error','message':'You have reached your specified API usage limits. You will regain access on 2026-10-01 at 00:00 UTC.'},'request_id':'req_011CfTLyHDp7wfUTaUTWZB44'}") void list_all_posts() {
         // generation failed for this TC, see @Disabled reason
     }
 
-    @Order(3)
-    @Test @Disabled("FR-058 BE-05: CLAP generation failed -- CLAP call failed: ERR-003-PROVIDER_ERROR: Claude client error: 400 BAD_REQUEST — {'type':'error','error':{'type':'invalid_request_error','message':'You have reached your specified API usage limits. You will regain access on 2026-10-01 at 00:00 UTC.'},'request_id':'req_011CfS23YC7Zrb4kNfJGFZ75'}") void create_post() {
+    @Test @Disabled("FR-058 BE-05: CLAP generation failed -- CLAP call failed: ERR-003-PROVIDER_ERROR: Claude client error: 400 BAD_REQUEST — {'type':'error','error':{'type':'invalid_request_error','message':'You have reached your specified API usage limits. You will regain access on 2026-10-01 at 00:00 UTC.'},'request_id':'req_011CfTLyc5sdraUEhLZyDkLP'}") void filter_posts_by_userid() {
         // generation failed for this TC, see @Disabled reason
     }
 
-    @Order(4)
-    @Test @Disabled("FR-058 BE-05: CLAP generation failed -- CLAP call failed: ERR-003-PROVIDER_ERROR: Claude client error: 400 BAD_REQUEST — {'type':'error','error':{'type':'invalid_request_error','message':'You have reached your specified API usage limits. You will regain access on 2026-10-01 at 00:00 UTC.'},'request_id':'req_011CfS23s9tKFHSgptEatYkt'}") void update_post() {
+    @Test @Disabled("FR-058 BE-05: CLAP generation failed -- CLAP call failed: ERR-003-PROVIDER_ERROR: Claude client error: 400 BAD_REQUEST — {'type':'error','error':{'type':'invalid_request_error','message':'You have reached your specified API usage limits. You will regain access on 2026-10-01 at 00:00 UTC.'},'request_id':'req_011CfTLyw77rRtJBeqR3ipoZ'}") void get_post_non_existent_id() {
         // generation failed for this TC, see @Disabled reason
     }
 
-    @Order(5)
-    @Test @Disabled("FR-058 BE-05: CLAP generation failed -- CLAP call failed: ERR-003-PROVIDER_ERROR: Claude client error: 400 BAD_REQUEST — {'type':'error','error':{'type':'invalid_request_error','message':'You have reached your specified API usage limits. You will regain access on 2026-10-01 at 00:00 UTC.'},'request_id':'req_011CfS24CL3wxqZT97ZBzmEp'}") void delete_post() {
+    @Test @Disabled("FR-058 BE-05: CLAP generation failed -- CLAP call failed: ERR-003-PROVIDER_ERROR: Claude client error: 400 BAD_REQUEST — {'type':'error','error':{'type':'invalid_request_error','message':'You have reached your specified API usage limits. You will regain access on 2026-10-01 at 00:00 UTC.'},'request_id':'req_011CfTLzFsyKhgSSWA4cEftF'}") void create_new_post() {
+        // generation failed for this TC, see @Disabled reason
+    }
+
+    @Test @Disabled("FR-058 BE-05: CLAP generation failed -- CLAP call failed: ERR-003-PROVIDER_ERROR: Claude client error: 400 BAD_REQUEST — {'type':'error','error':{'type':'invalid_request_error','message':'You have reached your specified API usage limits. You will regain access on 2026-10-01 at 00:00 UTC.'},'request_id':'req_011CfTLzaj3VoCRkTYQ7Upz5'}") void update_post_put() {
+        // generation failed for this TC, see @Disabled reason
+    }
+
+    @Test @Disabled("FR-058 BE-05: CLAP generation failed -- CLAP call failed: ERR-003-PROVIDER_ERROR: Claude client error: 400 BAD_REQUEST — {'type':'error','error':{'type':'invalid_request_error','message':'You have reached your specified API usage limits. You will regain access on 2026-10-01 at 00:00 UTC.'},'request_id':'req_011CfTLzuaNGgNhaqtVNXXw9'}") void partial_update_post_patch() {
+        // generation failed for this TC, see @Disabled reason
+    }
+
+    @Test @Disabled("FR-058 BE-05: CLAP generation failed -- CLAP call failed: ERR-003-PROVIDER_ERROR: Claude client error: 400 BAD_REQUEST — {'type':'error','error':{'type':'invalid_request_error','message':'You have reached your specified API usage limits. You will regain access on 2026-10-01 at 00:00 UTC.'},'request_id':'req_011CfTM1EbrkWqFNi2VDUMLE'}") void delete_post() {
         // generation failed for this TC, see @Disabled reason
     }
 
