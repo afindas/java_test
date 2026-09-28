@@ -17,12 +17,12 @@ class UsersApiTest {
     }
 
     @Order(1)
-    @Test @Disabled("FR-058 BE-05: CLAP generation failed -- CLAP call failed: ERR-003-PROVIDER_ERROR: Claude client error: 400 BAD_REQUEST — {'type':'error','error':{'type':'invalid_request_error','message':'You have reached your specified API usage limits. You will regain access on 2026-10-01 at 00:00 UTC.'},'request_id':'req_011CfV9QKmf5Jzq2e4xcNcFT'}") void listusers() {
+    @Test @Disabled("FR-058 BE-05: CLAP generation failed -- CLAP call failed: ERR-003-PROVIDER_ERROR: Claude client error: 400 BAD_REQUEST — {'type':'error','error':{'type':'invalid_request_error','message':'You have reached your specified API usage limits. You will regain access on 2026-10-01 at 00:00 UTC.'},'request_id':'req_011CfVZ7fFW9N1qp4FAo2r7w'}") void listusers() {
         // generation failed for this TC, see @Disabled reason
     }
 
     @Order(2)
-    @Test @Disabled("FR-058 BE-05: CLAP generation failed -- CLAP call failed: ERR-003-PROVIDER_ERROR: Claude client error: 400 BAD_REQUEST — {'type':'error','error':{'type':'invalid_request_error','message':'You have reached your specified API usage limits. You will regain access on 2026-10-01 at 00:00 UTC.'},'request_id':'req_011CfV9QedituHP62UULyHCF'}") void getuser() {
+    @Test @Disabled("FR-058 BE-05: CLAP generation failed -- CLAP call failed: ERR-003-PROVIDER_ERROR: Claude client error: 400 BAD_REQUEST — {'type':'error','error':{'type':'invalid_request_error','message':'You have reached your specified API usage limits. You will regain access on 2026-10-01 at 00:00 UTC.'},'request_id':'req_011CfVZ7ycoXoswfY9pCxhXb'}") void getuser() {
         // generation failed for this TC, see @Disabled reason
     }
 
