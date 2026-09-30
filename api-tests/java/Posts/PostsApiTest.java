@@ -30,6 +30,7 @@ class PostsApiTest {
                 .body("$.id", equalTo(1))
                 .body("$.userId", notNullValue())
                 .body("$.title", notNullValue())
+                .body("$.body", notNullValue())
                 .header("Content-Type", notNullValue())
                 .time(lessThan(2000L), TimeUnit.MILLISECONDS);
         }
@@ -40,9 +41,8 @@ class PostsApiTest {
     @Test void list_all_posts() {
         ```java
         @Test
-        public void testGetPostsEndpoint() {
-            Response response =
-                given()
+        public void testGetPostsReturnsNonEmptyArrayWithExpectedFields() {
+            Response response = given()
                     .header("Accept", "application/json")
                 .when()
                     .get("https://jsonplaceholder.typicode.com/posts")
@@ -50,12 +50,13 @@ class PostsApiTest {
                     .statusCode(200)
                     .body("userId", everyItem(notNullValue()))
                     .time(lessThan(3000L), TimeUnit.MILLISECONDS)
-                    .extract().response();
+                    .extract()
+                    .response();
         
-            // CLAP hint: Assert response is a non-empty array
-            List<?> responseList = response.jsonPath().getList("$");
-            Assert.assertNotNull(responseList, "Response array should not be null");
-            Assert.assertFalse(responseList.isEmpty(), "Response array should not be empty");
+            // Assert response is a non-empty array
+            List<?> posts = response.jsonPath().getList("$");
+            Assert.assertNotNull(posts, "Response body should not be null");
+            Assert.assertFalse(posts.isEmpty(), "Response array should not be empty");
         }
         ```
     }
@@ -65,10 +66,12 @@ class PostsApiTest {
         ```java
         @Test
         public void testGetPostsByUserId() {
-            Response response = given()
+            Response response = RestAssured
+                .given()
+                    .baseUri("https://jsonplaceholder.typicode.com")
                     .header("Accept", "application/json")
                 .when()
-                    .get("https://jsonplaceholder.typicode.com/posts?userId=1")
+                    .get("/posts?userId=1")
                 .then()
                     .statusCode(200)
                     .body(containsString("\"userId\": 1"))
@@ -76,14 +79,15 @@ class PostsApiTest {
                     .response();
         
             // CLAP hint: Every item should have userId = 1
-            List<Integer> userIds = response.jsonPath().getList("userId");
-            org.testng.Assert.assertNotNull(userIds, "Response body should contain a list of posts");
-            org.testng.Assert.assertFalse(userIds.isEmpty(), "Posts list should not be empty");
-            for (Integer userId : userIds) {
-                org.testng.Assert.assertEquals(
-                        userId.intValue(),
-                        1,
-                        "Every post should have userId = 1, but found userId = " + userId
+            List<Map<String, Object>> posts = response.jsonPath().getList("$");
+            org.junit.Assert.assertFalse("Response body should not be empty", posts.isEmpty());
+            for (Map<String, Object> post : posts) {
+                Object userId = post.get("userId");
+                org.junit.Assert.assertNotNull("userId should not be null", userId);
+                org.junit.Assert.assertEquals(
+                    "Every post should have userId = 1",
+                    1,
+                    ((Number) userId).intValue()
                 );
             }
         }
@@ -117,16 +121,16 @@ class PostsApiTest {
                     + "}";
         
             given()
-                    .header("Content-Type", "application/json; charset=UTF-8")
-                    .header("Accept", "application/json")
-                    .body(requestBody)
+                .header("Content-Type", "application/json; charset=UTF-8")
+                .header("Accept", "application/json")
+                .body(requestBody)
             .when()
-                    .post("https://jsonplaceholder.typicode.com/posts")
+                .post("https://jsonplaceholder.typicode.com/posts")
             .then()
-                    .statusCode(201)
-                    .body("$.id", equalTo(101))
-                    .body("$.title", equalTo("ICE API test"))
-                    .body("$.userId", equalTo(1));
+                .statusCode(201)
+                .body("$.id", equalTo(101))
+                .body("$.title", equalTo("ICE API test"))
+                .body("$.userId", equalTo(1));
         }
         ```
     }
@@ -136,12 +140,12 @@ class PostsApiTest {
         ```java
         @Test
         public void testPutPost1_FullReplacement() {
-            String requestBody = "{"
-                    + "\"id\":1,"
-                    + "\"title\":\"Updated title\","
-                    + "\"body\":\"Updated body\","
-                    + "\"userId\":1"
-                    + "}";
+            String requestBody = "{\n" +
+                    "  \"id\": 1,\n" +
+                    "  \"title\": \"Updated title\",\n" +
+                    "  \"body\": \"Updated body\",\n" +
+                    "  \"userId\": 1\n" +
+                    "}";
         
             given()
                 .header("Content-Type", "application/json; charset=UTF-8")
@@ -182,7 +186,7 @@ class PostsApiTest {
     @Test void delete_post() {
         ```java
         @Test
-        public void testDeletePost1() {
+        public void testDeletePost() {
             given()
                 .header("Accept", "application/json")
             .when()
